@@ -3,7 +3,7 @@ extends MultiMeshInstance2D
 var target = Vector2(1000.0, 50.0)
 var fishes = []
 var interspace = 25.0;
-var seperation_weight = 0.05
+var seperation_weight = 0.08
 var cohesion_weight = 0.05
 var alignment_weight = 0.015
 
@@ -13,6 +13,7 @@ func _ready():
 		fishes.push_back(current_fish)
 		current_fish.transform = Transform2D().translated(Vector2(randf() * 30.0, i * interspace)) 
 		multimesh.set_instance_transform_2d(i, current_fish.transform)
+		material.set_shader_param("size", multimesh.mesh.size)
 
 func _process(delta):
 	for i in range(self.multimesh.instance_count):
@@ -26,9 +27,12 @@ func _process(delta):
 		var steering = alignment_force + seperation_force + coherence_force
 
 		fish.velocity = (fish.velocity + steering).clamped(fish.max_speed)
-		fish.transform = fish.transform.translated(fish.velocity)
+		material.set_shader_param("speed", fish.velocity.length())
 
-		# fish.transform = fish.transform.rotated(PI/2.0)
+		var new_transform = Transform2D().rotated(fish.velocity.angle())
+		new_transform.origin = Transform2D.IDENTITY.translated(fish.transform.get_origin() + fish.velocity).get_origin()
+		fish.transform = new_transform
+
 		multimesh.set_instance_transform_2d(i, fish.transform)
 
 	update()
@@ -41,7 +45,7 @@ func _input(event):
 class Fish:
 	var transform
 	var velocity = Vector2(1.0, 0.0)
-	var max_force = 0.02
+	var max_force = 0.05
 	var max_speed = 2.5
 	var seperation_radius = 100.0
 
