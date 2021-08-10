@@ -1,9 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=3 format=2]
-
-[ext_resource path="res://fishie.shader" type="Shader" id=1]
-
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 1 )
+[gd_resource type="ArrayMesh" format=2]
 
 [resource]
 surfaces/0 = {
@@ -13,7 +8,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 262417,
 "index_count": 78,
-"material": SubResource( 1 ),
 "name": "test",
 "primitive": 4,
 "skeleton_aabb": [  ],

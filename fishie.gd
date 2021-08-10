@@ -27,7 +27,7 @@ func _process(delta):
 		var steering = alignment_force + seperation_force + coherence_force
 
 		fish.velocity = (fish.velocity + steering).clamped(fish.max_speed)
-		multimesh.set_instance_custom_data(i, Color(fish.velocity.length(), 0.0, 0.0, 0.0))
+		multimesh.set_instance_custom_data(i, Color(fish.velocity.length(), i, 0.0, 0.0))
 
 		var new_transform = Transform2D().rotated(fish.velocity.angle())
 		new_transform.origin = Transform2D.IDENTITY.translated(fish.transform.get_origin() + fish.velocity).get_origin()
