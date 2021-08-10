@@ -8,12 +8,12 @@ var cohesion_weight = 0.05
 var alignment_weight = 0.015
 
 func _ready():
-	for i in range(self.multimesh.instance_count):
+	# multimesh.mesh.material.set_shader_param("mesh_size", multimesh.mesh.get_aabb().size)
+	for i in range(multimesh.instance_count):
 		var current_fish = Fish.new()
 		fishes.push_back(current_fish)
 		current_fish.transform = Transform2D().translated(Vector2(randf() * 30.0, i * interspace)) 
 		multimesh.set_instance_transform_2d(i, current_fish.transform)
-		material.set_shader_param("size", multimesh.mesh.size)
 
 func _process(delta):
 	for i in range(self.multimesh.instance_count):
@@ -27,7 +27,7 @@ func _process(delta):
 		var steering = alignment_force + seperation_force + coherence_force
 
 		fish.velocity = (fish.velocity + steering).clamped(fish.max_speed)
-		material.set_shader_param("speed", fish.velocity.length())
+		multimesh.set_instance_custom_data(i, Color(fish.velocity.length(), 0.0, 0.0, 0.0))
 
 		var new_transform = Transform2D().rotated(fish.velocity.angle())
 		new_transform.origin = Transform2D.IDENTITY.translated(fish.transform.get_origin() + fish.velocity).get_origin()
