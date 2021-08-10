@@ -32,6 +32,3 @@ void fragment() {
 	vec4 texture_color = vec4(0.0, 0.0, 0.0, 1.0);
 	COLOR = texture_color;
 }
-
-MT-21-1000120115
-033284244131
