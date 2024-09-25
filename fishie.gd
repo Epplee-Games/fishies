@@ -46,7 +46,7 @@ class Fish:
 	var transform
 	var velocity = Vector2(1.0, 0.0)
 	var max_force = 0.05
-	var max_speed = 2.5
+	var max_speed = 1.0
 	var seperation_radius = 100.0
 
 	func seperate(group) -> Vector2:
@@ -104,6 +104,8 @@ class Fish:
 		return Vector2(0.0, 0.0)
 
 	func seek(point) -> Vector2:
+		if point.distance_to(transform.get_origin()) < 50.0:
+			return Vector2(0, 0)
 		var desired_velocity = (point - transform.get_origin()).normalized() * max_speed
 		var steering = desired_velocity - velocity
 		var steering_force = steering.clamped(max_force)

@@ -6,12 +6,12 @@
 [ext_resource path="res://fishie.shader" type="Shader" id=4]
 [ext_resource path="res://fish_mesh.tres" type="ArrayMesh" id=5]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
 shader_param/amount = 1.0
 shader_param/mesh_size = Vector2( 100, 60 )
 
-[sub_resource type="MultiMesh" id=1]
+[sub_resource type="MultiMesh" id=2]
 custom_data_format = 2
 instance_count = 20
 mesh = ExtResource( 5 )
@@ -22,9 +22,9 @@ custom_data_array = PoolColorArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 script = ExtResource( 3 )
 
 [node name="School" type="MultiMeshInstance2D" parent="."]
-material = SubResource( 2 )
+material = SubResource( 1 )
 z_index = 2
 z_as_relative = false
-multimesh = SubResource( 1 )
+multimesh = SubResource( 2 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )

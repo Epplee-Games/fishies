@@ -4,8 +4,8 @@ uniform float amount;
 uniform vec2 mesh_size;
 
 void vertex() {
-	float speed = INSTANCE_CUSTOM.x;
-	// float speed = 1.0;
+	// float speed = INSTANCE_CUSTOM.x;
+	float speed = 2.0;
 
 	// downscale the given mesh as it's very big.
 	VERTEX *= 0.1;
